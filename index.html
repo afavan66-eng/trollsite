@@ -1,50 +1,26 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geri Dön</title>
     <style>
-        body { margin: 0; background: black; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; font-family: sans-serif; }
-        .btn { padding: 20px 50px; background: #800; color: white; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; font-size: 1.5rem; z-index: 10; transition: 0.3s; }
-        .btn:hover { background: #f00; }
-        #jumpscare {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
-            width: 100vw; height: 100vh; object-fit: contain; z-index: 100; pointer-events: none;
-        }
-        .firlat { animation: firlama 0.15s forwards; }
-        @keyframes firlama {
-            0% { transform: translate(-50%, -50%) scale(0); }
-            100% { transform: translate(-50%, -50%) scale(1.4); }
-        }
+        body { margin: 0; background: black; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        .btn { padding: 20px 50px; background: #800; color: white; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; font-size: 1.5rem; }
+        #jumpscare { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 100vw; height: 100vh; object-fit: contain; pointer-events: none; }
+        .firlat { animation: firlama 0.1s forwards; }
+        @keyframes firlama { 0% { transform: translate(-50%, -50%) scale(0); } 100% { transform: translate(-50%, -50%) scale(1.3); } }
     </style>
 </head>
 <body>
-
     <button class="btn" onclick="korkut()">GERİ DÖN</button>
-
-    <img id="jumpscare" src="https://r.resimlink.com/7Y9Wv_i.png" alt="Korku">
-
+    <img id="jumpscare" src="https://r.resimlink.com/7Y9Wv_i.png">
     <audio id="scream" src="https://www.mboxdrive.com/soft-scream-15981.mp3"></audio>
-
     <script>
         function korkut() {
             const img = document.getElementById('jumpscare');
             const audio = document.getElementById('scream');
-            
-            // Sesi çal ve tam ekran yap
             audio.play();
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            }
-
-            // Figürü ekrana fırlat
+            if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); }
             img.classList.add('firlat');
-
-            // 3 saniye sonra ekranı karart veya eski haline döndür
-            setTimeout(() => {
-                img.classList.remove('firlat');
-            }, 3000);
         }
     </script>
 </body>
