@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>nolur</title>
-<style>
-html,body{
-  margin:0;height:100%;background:black;color:white;
-  display:flex;align-items:center;justify-content:center;
-  font-family:Arial,sans-serif;user-select:none;
-}
-#screen{
-  width:100%;height:100%;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  background-size:cover;background-position:center;
-}
-h1{font-size:64px;text-shadow:0 0 15px red;}
-button{padding:15px 30px;font-size:18px;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geri Dön</title>
+    <style>
+        body { margin: 0; background: black; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; font-family: sans-serif; }
+        .btn { padding: 20px 50px; background: #800; color: white; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; font-size: 1.5rem; z-index: 10; transition: 0.3s; }
+        .btn:hover { background: #f00; }
+        #jumpscare {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+            width: 100vw; height: 100vh; object-fit: contain; z-index: 100; pointer-events: none;
+        }
+        .firlat { animation: firlama 0.15s forwards; }
+        @keyframes firlama {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            100% { transform: translate(-50%, -50%) scale(1.4); }
+        }
+    </style>
 </head>
 <body>
-<div id="screen">
-  <h1>nolur</h1>
-  <button onclick="go()">tıkla</button>
-</div>
 
-<audio id="scream" preload="auto">
-  <source src="https://actions.google.com/sounds/v1/human_sounds/scream.ogg">
-</audio>
+    <button class="btn" onclick="korkut()">GERİ DÖN</button>
 
-<script>
-function go(){
-  document.documentElement.requestFullscreen?.();
-  document.getElementById("screen").style.backgroundImage =
-  "url('https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=1400&q=80')";
-  let a=document.getElementById("scream");
-  a.volume=1;a.play();
-  history.pushState(null,null,location.href);
-  window.onpopstate=()=>history.pushState(null,null,location.href);
-  window.onbeforeunload=()=>true;
-}
-</script>
+    <img id="jumpscare" src="https://r.resimlink.com/7Y9Wv_i.png" alt="Korku">
+
+    <audio id="scream" src="https://www.mboxdrive.com/soft-scream-15981.mp3"></audio>
+
+    <script>
+        function korkut() {
+            const img = document.getElementById('jumpscare');
+            const audio = document.getElementById('scream');
+            
+            // Sesi çal ve tam ekran yap
+            audio.play();
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+
+            // Figürü ekrana fırlat
+            img.classList.add('firlat');
+
+            // 3 saniye sonra ekranı karart veya eski haline döndür
+            setTimeout(() => {
+                img.classList.remove('firlat');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
