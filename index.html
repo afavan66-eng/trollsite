@@ -3,44 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geri Dön</title>
     <style>
         body { margin: 0; background: black; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
-        .btn { 
-            padding: 20px 50px; background: #800; color: white; border-radius: 50px; 
-            border: 4px solid #fff; font-weight: bold; cursor: pointer; font-size: 1.5rem; 
-            z-index: 10;
-        }
-        #jumpscare {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
-            width: 100vw; height: 100vh; object-fit: contain; z-index: 100; pointer-events: none;
-        }
+        .btn { padding: 20px 50px; background: #800; color: white; border-radius: 50px; border: 4px solid #fff; font-weight: bold; cursor: pointer; font-size: 1.5rem; z-index: 10; }
+        #jumpscare { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 100vw; height: 100vh; object-fit: contain; z-index: 100; pointer-events: none; }
         .firlat { animation: firlama 0.1s forwards; }
-        @keyframes firlama {
-            0% { transform: translate(-50%, -50%) scale(0); }
-            100% { transform: translate(-50%, -50%) scale(1.4); }
-        }
+        @keyframes firlama { 0% { transform: translate(-50%, -50%) scale(0); } 100% { transform: translate(-50%, -50%) scale(1.4); } }
     </style>
 </head>
 <body>
-
     <button class="btn" onclick="baslat()">GERİ DÖN</button>
-
     <img id="jumpscare" src="https://raw.githubusercontent.com/afavan66-eng/troll-sitesi/ana/1000007979.png">
-
     <audio id="scream" src="https://raw.githubusercontent.com/afavan66-eng/troll-sitesi/ana/soft-scream-15981.mp3"></audio>
-
     <script>
         function baslat() {
             const img = document.getElementById('jumpscare');
             const audio = document.getElementById('scream');
-            
-            audio.play();
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            }
+            audio.play().catch(e => console.log("Ses çalma hatası:", e));
+            if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); }
             img.classList.add('firlat');
         }
     </script>
 </body>
 </html>
+
