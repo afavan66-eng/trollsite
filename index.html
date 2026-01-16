@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>nolur</title>
+<style>
+html,body{
+  margin:0;height:100%;background:black;color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-family:Arial,sans-serif;user-select:none;
+}
+#screen{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background-size:cover;background-position:center;
+}
+h1{font-size:64px;text-shadow:0 0 15px red;}
+button{padding:15px 30px;font-size:18px;}
+</style>
+</head>
+<body>
+<div id="screen">
+  <h1>nolur</h1>
+  <button onclick="go()">tıkla</button>
+</div>
+
+<audio id="scream" preload="auto">
+  <source src="https://actions.google.com/sounds/v1/human_sounds/scream.ogg">
+</audio>
+
+<script>
+function go(){
+  document.documentElement.requestFullscreen?.();
+  document.getElementById("screen").style.backgroundImage =
+  "url('https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=1400&q=80')";
+  let a=document.getElementById("scream");
+  a.volume=1;a.play();
+  history.pushState(null,null,location.href);
+  window.onpopstate=()=>history.pushState(null,null,location.href);
+  window.onbeforeunload=()=>true;
+}
+</script>
+</body>
+</html>
