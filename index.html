@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { margin: 0; background: black; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
@@ -13,17 +12,16 @@
 </head>
 <body>
     <button class="btn" onclick="baslat()">GERİ DÖN</button>
-    <img id="jumpscare" src="https://raw.githubusercontent.com/afavan66-eng/troll-sitesi/ana/1000007979.png">
-    <audio id="scream" src="https://raw.githubusercontent.com/afavan66-eng/troll-sitesi/ana/soft-scream-15981.mp3"></audio>
+    <img id="jumpscare" src="1000007979.png">
+    <audio id="scream" src="soft-scream-15981.mp3"></audio>
     <script>
         function baslat() {
             const img = document.getElementById('jumpscare');
             const audio = document.getElementById('scream');
-            audio.play().catch(e => console.log("Ses çalma hatası:", e));
+            audio.play();
             if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); }
             img.classList.add('firlat');
         }
     </script>
 </body>
 </html>
-
